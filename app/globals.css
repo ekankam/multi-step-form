@@ -74,3 +74,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body,
+:root {
+  height: 100%;
+  width: 100%;
+}
+
+.c-shadow {
+  box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
+}

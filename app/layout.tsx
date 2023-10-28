@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const ubuntu = Ubuntu({
   subsets: [
@@ -30,7 +31,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
-      <body className={ubuntu.className}>{children}</body>
+      <body className={cn(ubuntu.className, "bg-c-neutral-magnolia")}>
+        {children}
+      </body>
     </html>
   );
 }
