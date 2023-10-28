@@ -52,6 +52,7 @@ module.exports = {
         },
         "c-primary": {
           "marine-blue": "hsl(213, 96%, 18%)",
+          "marine-blue-hover": "hsla(213, 72%, 31%, 1)",
           "purplish-blue": "hsl(243, 100%, 62%)",
           "pastel-blue": "hsl(228, 100%, 84%)",
           "light-blue": "hsl(206, 94%, 87%)",
