@@ -15,8 +15,10 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import useStore from "@/store/useStore";
+import Footer from "../Footer";
+import Container from "../Container";
 
 const formSchema = z.object({
   name: z.string().min(5, { message: "Name is required." }).max(100),
@@ -28,16 +30,11 @@ const formSchema = z.object({
 
 type ValidationSchema = z.infer<typeof formSchema>;
 
-const initialFormValues = {
-  name: "",
-  email: "",
-  phone: "",
-};
-
 export default function PersonalInfo() {
+  const { formData, setFormData } = useStore();
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialFormValues,
+    defaultValues: { ...formData.personalInfo },
   });
   const {
     control,
@@ -45,19 +42,19 @@ export default function PersonalInfo() {
   } = form;
 
   const onSubmitHandler = (values: ValidationSchema) => {
-    console.log(values);
+    setFormData({ ...formData, personalInfo: values, step: formData.step + 1 });
   };
 
   return (
-    <div>
+    <Container>
       <SectionHeader
         title="Personal info"
         description="Please provide your name, email address, and phone number."
       />
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmitHandler)}
           className="flex flex-col gap-6"
+          onSubmit={() => form.handleSubmit(onSubmitHandler)}
         >
           <FormField
             control={control}
@@ -135,6 +132,10 @@ export default function PersonalInfo() {
           />
         </form>
       </Form>
-    </div>
+      <Footer
+        className=""
+        onHandleNextStep={form.handleSubmit(onSubmitHandler)}
+      />
+    </Container>
   );
 }

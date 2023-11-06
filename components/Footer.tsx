@@ -1,35 +1,52 @@
+"use client";
+
 import React from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import useStore from "@/store/useStore";
 
 type TFooter = {
   className?: string;
-  stepNumber?: number;
+  onHandleNextStep?: () => void;
+  onHandlePreviousStep?: () => void;
 };
 
-export default function Footer({ className, stepNumber = 1 }: TFooter) {
+export default function Footer({
+  className,
+  onHandleNextStep,
+  onHandlePreviousStep,
+}: TFooter) {
+  const {
+    formData: { step },
+  } = useStore();
   return (
     <footer
       className={cn(
-        "p-4 bg-c-neutral-white w-full flex items-center justify-between",
+        "p-4 bg-c-neutral-white w-full flex items-center justify-between mt-10",
         className
       )}
     >
-      {stepNumber > 1 && (
-        <Button variant="ghost" className="text-c-neutral-cool-gray">
+      {step === 1 && <div className="w-full" />}
+
+      {step > 1 && (
+        <Button
+          variant="ghost"
+          className="text-c-neutral-cool-gray"
+          onClick={onHandlePreviousStep}
+        >
           Go Back
         </Button>
       )}
-      {stepNumber === 1 && <div className="w-full" />}
       <Button
         className={cn(
           "bg-c-primary-marine-blue text-c-neutral-white hover:bg-c-primary-marine-blue-hover",
           {
-            "bg-c-primary-purplish-blue": stepNumber === 4,
+            "bg-c-primary-purplish-blue": step === 4,
           }
         )}
+        onClick={onHandleNextStep}
       >
-        {stepNumber === 4 ? "Confirm" : "Next Step"}
+        {step === 4 ? "Confirm" : "Next Step"}
       </Button>
     </footer>
   );

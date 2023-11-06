@@ -8,13 +8,13 @@ type TContainer = {
 
 export default function Container({ children, className }: TContainer) {
   return (
-    <div
+    <section
       className={cn(
         "w-full h-full px-6 py-8 lg:px-[100px] lg:pt-10 lg:min-h-[568px]",
         className
       )}
     >
       {children}
-    </div>
+    </section>
   );
 }
