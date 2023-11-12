@@ -57,6 +57,7 @@ module.exports = {
           "pastel-blue": "hsl(228, 100%, 84%)",
           "light-blue": "hsl(206, 94%, 87%)",
           "strawberry-red": "hsl(354, 84%, 57%)",
+          "purplish-hover": "hsla(243, 100%, 77%, 1)",
         },
         "c-neutral": {
           "cool-gray": "hsl(231, 11%, 63%)",
