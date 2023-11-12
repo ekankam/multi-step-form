@@ -4,30 +4,30 @@ import Image from "next/image";
 import useStore from "@/store/useStore";
 import { cn } from "@/lib/utils";
 
-export default function PlanCard({ plan, onClick }: any) {
-  const { formData } = useStore();
+export default function PlanCard({ item, onClick }: any) {
+  const { isToggled, plan } = useStore((state) => state);
 
   let imgSrc = "";
   let alt = "";
 
-  switch (plan?.name) {
+  switch (item?.name) {
     case "Arcade":
       imgSrc = "/images/icon-arcade.svg";
-      alt = plan?.name;
+      alt = item?.name;
       break;
     case "Advanced":
       imgSrc = "/images/icon-advanced.svg";
-      alt = plan?.name;
+      alt = item?.name;
     case "Pro":
       imgSrc = "/images/icon-pro.svg";
-      alt = plan?.name;
+      alt = item?.name;
     default:
       break;
   }
 
-  const formattedPrice = formData?.isToggled
-    ? `$${plan.subscription.yearly.price}/yr`
-    : `$${plan.subscription.month.price}/mo`;
+  const formattedPrice = isToggled
+    ? `$${item.subscription.yearly?.price}/yr`
+    : `$${item.subscription.monthly?.price}/mo`;
 
   return (
     <Card
@@ -35,7 +35,7 @@ export default function PlanCard({ plan, onClick }: any) {
         "w-full cursor-pointer hover:border hover:border-c-primary-purplish-blue",
         {
           "border border-c-primary-purplish-blue bg-c-neutral-alabaster":
-            formData && formData.plan?.id === plan.id,
+            plan && plan?.id === item.id,
         }
       )}
       onClick={onClick}
@@ -46,7 +46,7 @@ export default function PlanCard({ plan, onClick }: any) {
         </div>
         <div>
           <CardTitle className="text-base font-medium text-c-primary-marine-blue">
-            {plan?.name}
+            {item?.name}
           </CardTitle>
           <p className="text-sm text-c-neutral-cool-gray">{formattedPrice}</p>
         </div>

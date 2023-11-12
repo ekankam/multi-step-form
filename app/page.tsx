@@ -10,11 +10,7 @@ import Addons from "@/components/sections/Addons";
 import Summary from "@/components/sections/Summary";
 
 export default function Home() {
-  const {
-    formData: { step, plan, isToggled },
-  } = useStore();
-
-  console.log({ plan, isToggled });
+  const { step } = useStore((state) => state);
 
   return (
     <main className="h-full relative">

@@ -11,14 +11,14 @@ const plans = [
     id: 1,
     name: "Arcade",
     subscription: {
-      month: {
+      monthly: {
         price: 9,
-        type: "Monthly",
+        type: "monthly",
       },
       yearly: {
         price: 90,
         trails: "2 months free",
-        type: "Yearly",
+        type: "yearly",
       },
     },
   },
@@ -26,14 +26,14 @@ const plans = [
     id: 2,
     name: "Advanced",
     subscription: {
-      month: {
+      monthly: {
         price: 12,
-        type: "Monthly",
+        type: "monthly",
       },
       yearly: {
         price: 120,
         trails: "2 months free",
-        type: "Yearly",
+        type: "yearly",
       },
     },
   },
@@ -41,37 +41,39 @@ const plans = [
     id: 3,
     name: "Pro",
     subscription: {
-      month: {
+      monthly: {
         price: 15,
-        type: "Monthly",
+        type: "monthly",
       },
       yearly: {
         price: 150,
         trails: "2 months free",
-        type: "Yearly",
+        type: "yearly",
       },
     },
   },
 ];
 
 export default function Plan() {
-  const { formData, setFormData } = useStore();
-  const [selectedPlan, setSelectedPlan] = useState(formData.plan);
+  const { plan, setPlan, isToggled, step, increaseStep, decreaseStep } =
+    useStore((state) => state);
+  const [selectedPlan, setSelectedPlan] = useState(plan);
 
   useEffect(() => {
-    setFormData({ ...formData, plan: selectedPlan });
+    setPlan({
+      ...plan,
+      ...selectedPlan,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlan]);
 
   const onNext = () => {
-    if (!selectedPlan?.id) return;
-
-    setFormData({
-      ...formData,
-      step: formData.step + 1,
-    });
+    if (!selectedPlan?.id || !plan.name) return;
+    increaseStep(step);
   };
+
   const onPrevious = () => {
-    setFormData({ ...formData, step: formData.step - 1 });
+    decreaseStep(step);
   };
 
   const handleOnClick = (plan: any) => {
@@ -79,12 +81,12 @@ export default function Plan() {
       ...selectedPlan,
       id: plan.id,
       name: plan.name,
-      price: formData.isToggled
+      price: isToggled
         ? plan.subscription.yearly.price
-        : plan.subscription.month.price,
-      type: formData.isToggled
+        : plan.subscription.monthly.price,
+      type: isToggled
         ? plan.subscription.yearly.type
-        : plan.subscription.month.type,
+        : plan.subscription.monthly.type,
     });
   };
 
@@ -100,7 +102,7 @@ export default function Plan() {
             <PlanCard
               key={plan.id}
               onClick={() => handleOnClick(plan)}
-              plan={plan}
+              item={plan}
             />
           ))}
         </section>

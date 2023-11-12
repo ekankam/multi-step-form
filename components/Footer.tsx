@@ -16,9 +16,7 @@ export default function Footer({
   onHandleNextStep,
   onHandlePreviousStep,
 }: TFooter) {
-  const {
-    formData: { step },
-  } = useStore();
+  const step = useStore((state) => state.step);
   return (
     <footer
       className={cn(
@@ -38,12 +36,10 @@ export default function Footer({
         </Button>
       )}
       <Button
-        className={cn(
-          "bg-c-primary-marine-blue text-c-neutral-white hover:bg-c-primary-marine-blue-hover",
-          {
-            "bg-c-primary-purplish-blue": step === 4,
-          }
-        )}
+        className={cn("bg-c-primary-marine-blue text-c-neutral-white", {
+          "bg-c-primary-purplish-blue hover:bg-c-primary-purplish-hover":
+            step === 4,
+        })}
         onClick={onHandleNextStep}
       >
         {step === 4 ? "Confirm" : "Next Step"}

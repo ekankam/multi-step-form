@@ -31,10 +31,12 @@ const formSchema = z.object({
 type ValidationSchema = z.infer<typeof formSchema>;
 
 export default function PersonalInfo() {
-  const { formData, setFormData } = useStore();
+  const { personalInfo, setPersonalInfo, increaseStep } = useStore(
+    (state) => state
+  );
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: { ...formData.personalInfo },
+    defaultValues: { ...personalInfo },
   });
   const {
     control,
@@ -42,7 +44,8 @@ export default function PersonalInfo() {
   } = form;
 
   const onSubmitHandler = (values: ValidationSchema) => {
-    setFormData({ ...formData, personalInfo: values, step: formData.step + 1 });
+    setPersonalInfo({ ...personalInfo, ...values });
+    increaseStep(1);
   };
 
   return (
