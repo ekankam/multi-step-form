@@ -28,7 +28,7 @@ export default function Filter() {
       <p className={cn("text-sm", { "text-c-neutral-cool-gray": isToggled })}>
         Monthly
       </p>
-      <Switch onClick={() => handleClick(isToggled)} />
+      <Switch onClick={() => handleClick(isToggled)} checked={isToggled} />
       <p className={cn("text-sm", { "text-c-neutral-cool-gray": !isToggled })}>
         Yearly
       </p>

@@ -11,7 +11,6 @@ const createToggleSubscriptionPlan: StateCreator<ToggleSubcriptionPlanSlice> = (
   isToggled: false,
   toggleSubscriptionPlan: () =>
     set((state) => ({
-      ...state,
       isToggled: !state.isToggled,
     })),
 });

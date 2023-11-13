@@ -21,7 +21,7 @@ export default function Summary() {
     decreaseStep(step);
   };
 
-  const subscriptionType = plan.type === "Yearly" ? "yr" : "mo";
+  const subscriptionType = plan.type === "yearly" ? "yr" : "mo";
   const total = calculateAddOns(selectedAddOns) + plan.price;
 
   return (
@@ -61,16 +61,18 @@ export default function Summary() {
                       {item.name}
                     </span>
                     <span className="text-c-primary-marine-blue text-sm">
-                      {`${item.price}/${subscriptionType}`}
+                      {`+${item.price}/${subscriptionType}`}
                     </span>
                   </div>
                 ))}
             </div>
           </section>
           <div className="mt-6 flex items justify-between px-4">
-            <span className="text-c-neutral-cool-gray text-sm">{`Total (per year)`}</span>
+            <span className="text-c-neutral-cool-gray text-sm">{`Total (per ${
+              plan.type === "yearly" ? "year" : "month"
+            })`}</span>
             <span className="text-base font-bold text-c-primary-purplish-blue lg:text-xl">
-              {`$${total}/${subscriptionType}`}
+              {`+$${total}/${subscriptionType}`}
             </span>
           </div>
         </>

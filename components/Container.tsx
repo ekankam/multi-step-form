@@ -42,7 +42,7 @@ export default function Container({
         <Footer
           className={cn(
             "inline-flex lg:hidden absolute bottom-0 left-0 right-0",
-            { "-bottom-20": step === 2 }
+            { "-bottom-32": step === 2 }
           )}
           onHandleNextStep={onNext}
           onHandlePreviousStep={onPreviousStep}
