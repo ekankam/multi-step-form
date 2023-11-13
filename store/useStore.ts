@@ -9,21 +9,25 @@ import {
   createAddOnSlice,
   createToggleSubscriptionPlan,
   createStepSlice,
+  createSubmitFormSlice,
 } from "./slices";
 import { StepSlice } from "./slices/createStepSlice";
+import { SubmitFormSlice } from "./slices/createSubmitFormSlice";
 
 const useStore = create<
   PersonalInfoSlice &
     PlanSlice &
     AddOnSlice &
     ToggleSubcriptionPlanSlice &
-    StepSlice
+    StepSlice &
+    SubmitFormSlice
 >()((...a) => ({
   ...createPersonalInfoSlice(...a),
   ...createPlanSlice(...a),
   ...createAddOnSlice(...a),
   ...createToggleSubscriptionPlan(...a),
   ...createStepSlice(...a),
+  ...createSubmitFormSlice(...a),
 }));
 
 export default useStore;
