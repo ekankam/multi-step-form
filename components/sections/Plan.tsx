@@ -4,54 +4,7 @@ import Container from "../Container";
 import useStore from "@/store/useStore";
 import PlanCard from "../PlanCard";
 import Filter from "../Filter";
-
-const plans = [
-  {
-    id: 1,
-    name: "Arcade",
-    subscription: {
-      monthly: {
-        price: 9,
-        type: "monthly",
-      },
-      yearly: {
-        price: 90,
-        trails: "2 months free",
-        type: "yearly",
-      },
-    },
-  },
-  {
-    id: 2,
-    name: "Advanced",
-    subscription: {
-      monthly: {
-        price: 12,
-        type: "monthly",
-      },
-      yearly: {
-        price: 120,
-        trails: "2 months free",
-        type: "yearly",
-      },
-    },
-  },
-  {
-    id: 3,
-    name: "Pro",
-    subscription: {
-      monthly: {
-        price: 15,
-        type: "monthly",
-      },
-      yearly: {
-        price: 150,
-        trails: "2 months free",
-        type: "yearly",
-      },
-    },
-  },
-];
+import { plans } from "@/data";
 
 export default function Plan() {
   const { plan, setPlan, isToggled, step, increaseStep, decreaseStep } =
