@@ -17,7 +17,6 @@ import {
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import useStore from "@/store/useStore";
-import Footer from "../Footer";
 import Container from "../Container";
 
 const formSchema = z.object({
@@ -49,7 +48,7 @@ export default function PersonalInfo() {
   };
 
   return (
-    <Container>
+    <Container onNext={form.handleSubmit(onSubmitHandler)}>
       <SectionHeader
         title="Personal info"
         description="Please provide your name, email address, and phone number."
@@ -135,10 +134,6 @@ export default function PersonalInfo() {
           />
         </form>
       </Form>
-      <Footer
-        className=""
-        onHandleNextStep={form.handleSubmit(onSubmitHandler)}
-      />
     </Container>
   );
 }

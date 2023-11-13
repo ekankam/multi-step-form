@@ -25,9 +25,9 @@ export default function PlanCard({ item, onClick }: any) {
       break;
   }
 
-  const formattedPrice = isToggled
-    ? `$${item.subscription.yearly?.price}/yr`
-    : `$${item.subscription.monthly?.price}/mo`;
+  const formattedPrice = !isToggled
+    ? `$${item.subscription.monthly?.price}/mo`
+    : `$${item.subscription.yearly?.price}/yr`;
 
   return (
     <Card

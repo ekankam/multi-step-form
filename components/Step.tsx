@@ -16,7 +16,7 @@ export default function Step({
   const step = useStore((state) => state.step);
 
   return (
-    <section className="uppercase flex items-center gap-4 hover:border hover:border-c-primary-light-blue">
+    <section className="uppercase flex items-center gap-4">
       <p
         className={cn(
           "w-[33px] h-[33px] rounded-full flex items-center justify-center text-sm font-bold text-c-neutral-white border border-c-neutral-white",

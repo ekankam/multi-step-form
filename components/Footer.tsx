@@ -20,7 +20,7 @@ export default function Footer({
   return (
     <footer
       className={cn(
-        "p-4 bg-c-neutral-white w-full flex items-center justify-between mt-10",
+        "p-4 bg-c-neutral-white flex items-center justify-between",
         className
       )}
     >

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SectionHeader from "../SectionHeader";
 import Container from "../Container";
 import useStore from "@/store/useStore";
-import Footer from "../Footer";
 import PlanCard from "../PlanCard";
 import Filter from "../Filter";
 
@@ -91,7 +90,7 @@ export default function Plan() {
   };
 
   return (
-    <Container className="flex justify-between flex-col">
+    <Container onNext={onNext} onPreviousStep={onPrevious}>
       <div>
         <SectionHeader
           title="Select your plan"
@@ -108,11 +107,6 @@ export default function Plan() {
         </section>
         <Filter />
       </div>
-      <Footer
-        className="fixed -bottom-40 left-0 lg:static"
-        onHandleNextStep={onNext}
-        onHandlePreviousStep={onPrevious}
-      />
     </Container>
   );
 }

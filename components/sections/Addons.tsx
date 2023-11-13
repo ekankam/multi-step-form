@@ -3,7 +3,6 @@ import SectionHeader from "../SectionHeader";
 import Container from "../Container";
 import AddonCard from "../AddonCard";
 import useStore from "@/store/useStore";
-import Footer from "../Footer";
 
 const addOns = [
   {
@@ -65,7 +64,7 @@ export default function Addons() {
   };
 
   return (
-    <Container>
+    <Container onNext={onNext} onPreviousStep={onPrevious}>
       <SectionHeader
         title="Pick add-ons"
         description="Add-ons help enhance your gaming experience."
@@ -75,11 +74,6 @@ export default function Addons() {
           <AddonCard key={addon.id} addOn={addon} />
         ))}
       </section>
-      <Footer
-        className="fixed -bottom-40 left-0 lg:static"
-        onHandleNextStep={onNext}
-        onHandlePreviousStep={onPrevious}
-      />
     </Container>
   );
 }
